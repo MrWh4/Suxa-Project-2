@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ma'lumotlar ro'yxati</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+    }
+    
+    body {
+      background: #f5f7fa;
+      color: #333;
+      min-height: 100vh;
+    }
+    
+    .header {
+      background: linear-gradient(135deg, #667eea, #764ba2);
+      color: white;
+      padding: 20px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+    
+    .header-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    
+    .nav-links {
+      display: flex;
+      gap: 15px;
+    }
+    
+    .nav-links a {
+      color: white;
+      text-decoration: none;
+      padding: 8px 15px;
+      border-radius: 30px;
+      transition: all 0.3s;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+    
+    .nav-links a:hover {
+      background: rgba(255, 255, 255, 0.2);
+    }
+    
+    .container {
+      max-width: 1200px;
+      margin: 30px auto;
+      padding: 0 20px;
+    }
+    
+    .search-box {
+      display: flex;
+      margin-bottom: 20px;
+      background: white;
+      border-radius: 10px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+      overflow: hidden;
+    }
+    
+    .search-input {
+      flex: 1;
+      padding: 12px 15px;
+      border: none;
+      font-size: 16px;
+    }
+    
+    .search-input:focus {
+      outline: none;
+    }
+    
+    .search-btn {
+      background: linear-gradient(to right, #667eea, #764ba2);
+      color: white;
+      border: none;
+      padding: 0 20px;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+    
+    .search-btn:hover {
+      background: linear-gradient(to right, #5a71d6, #6a43a9);
+    }
+    
+    .data-table {
+      width: 100%;
+      border-collapse: collapse;
+      background: white;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+    }
+    
+    .data-table th {
+      background: #f8f9fa;
+      padding: 15px;
+      text-align: left;
+      font-weight: 600;
+      color: #555;
+      border-bottom: 1px solid #eee;
+    }
+    
+    .data-table td {
+      padding: 15px;
+      border-bottom: 1px solid #eee;
+      color: #666;
+    }
+    
+    .data-table tr:last-child td {
+      border-bottom: none;
+    }
+    
+    .data-table tr:hover {
+      background: #f8f9fa;
+    }
+    
+    .action-btns {
+      display: flex;
+      gap: 10px;
+    }
+    
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      padding: 8px 12px;
+      border-radius: 6px;
+      font-size: 14px;
+      cursor: pointer;
+      transition: all 0.3s;
+      border: none;
+      color: white;
+      text-decoration: none;
+    }
+    
+    .btn-view {
+      background: #3498db;
+    }
+    
+    .btn-view:hover {
+      background: #2980b9;
+    }
+    
+    .btn-edit {
+      background: #f39c12;
+    }
+    
+    .btn-edit:hover {
+      background: #d68910;
+    }
+    
+    .btn-delete {
+      background: #e74c3c;
+    }
+    
+    .btn-delete:hover {
+      background: #c0392b;
+    }
+    
+    .btn-download {
+      background: #27ae60;
+    }
+    
+    .btn-download:hover {
+      background: #219653;
+    }
+    
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 1000;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.5);
+      overflow: auto;
+    }
+    
+    .modal-content {
+      background: white;
+      margin: 50px auto;
+      padding: 30px;
+      width: 80%;
+      max-width: 600px;
+      border-radius: 15px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+      position: relative;
+      animation: modalFadeIn 0.3s;
+    }
+    
+    .close-btn {
+      position: absolute;
+      top: 15px;
+      right: 15px;
+      font-size: 24px;
+      color: #aaa;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+    
+    .close-btn:hover {
+      color: #333;
+    }
+    
+    .modal-title {
+      margin-bottom: 20px;
+      color: #333;
+      font-size: 24px;
+      font-weight: 600;
+    }
+    
+    .detail-row {
+      display: flex;
+      margin-bottom: 15px;
+      border-bottom: 1px solid #eee;
+      padding-bottom: 15px;
+    }
+    
+    .detail-row:last-child {
+      border-bottom: none;
+      margin-bottom: 0;
+      padding-bottom: 0;
+    }
+    
+    .detail-label {
+      width: 150px;
+      font-weight: 500;
+      color: #555;
+    }
+    
+    .detail-value {
+      flex: 1;
+      color: #666;
+    }
+    
+    .file-preview {
+      margin-top: 5px;
+    }
+    
+    .file-preview a {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      color: #3498db;
+      text-decoration: none;
+      transition: all 0.3s;
+    }
+    
+    .file-preview a:hover {
+      color: #2980b9;
+    }
+    
+    .file-preview img {
+      max-width: 100%;
+      max-height: 200px;
+      border-radius: 5px;
+      margin-top: 10px;
+    }
+    
+    .form-group {
+      margin-bottom: 20px;
+    }
+    
+    .form-group label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: 500;
+      color: #555;
+    }
+    
+    .form-control {
+      width: 100%;
+      padding: 12px 15px;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      font-size: 16px;
+      transition: all 0.3s;
+    }
+    
+    .form-control:focus {
+      border-color: #764ba2;
+      box-shadow: 0 0 0 3px rgba(118, 75, 162, 0.2);
+      outline: none;
+    }
+    
+    .btn-update {
+      background: linear-gradient(to right, #667eea, #764ba2);
+      color: white;
+      border: none;
+      padding: 12px 25px;
+      border-radius: 8px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.3s;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+    
+    .btn-update:hover {
+      background: linear-gradient(to right, #5a71d6, #6a43a9);
+    }
+    
+    .success-message {
+      background: #d4edda;
+      color: #155724;
+      padding: 15px;
+      border-radius: 8px;
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    
+    .no-data {
+      text-align: center;
+      padding: 50px 0;
+      color: #666;
+    }
+    
+    .no-data i {
+      font-size: 50px;
+      color: #ddd;
+      margin-bottom: 15px;
+    }
+    
+    @keyframes modalFadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(-50px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    
+    /* Responsive */
+    @media (max-width: 768px) {
+      .header-content {
+        flex-direction: column;
+        gap: 15px;
+      }
+      
+      .nav-links {
+        width: 100%;
+        justify-content: center;
+      }
+      
+      .data-table {
+        display: block;
+        overflow-x: auto;
+      }
+      
+      .modal-content {
+        width: 95%;
+        margin: 20px auto;
+      }
+      
+      .detail-row {
+        flex-direction: column;
+      }
+      
+      .detail-label {
+        width: 100%;
+        margin-bottom: 5px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="header">
+    <div class="header-content">
+      <h2>Ma'lumotlar ro'yxati</h2>
+      <div class="nav-links">
+        <a href="/"><i class="fas fa-home"></i> Bosh sahifa</a>
+        <a href="/logout"><i class="fas fa-sign-out-alt"></i> Chiqish</a>
+      </div>
+    </div>
+  </header>
+  
+  <div class="container">
+    <% if (data && data.length > 0) { %>
+      <div class="search-box">
+        <input type="text" id="searchInput" class="search-input" placeholder="Qidirish...">
+        <button onclick="searchData()" class="search-btn"><i class="fas fa-search"></i></button>
+      </div>
+      
+      <table class="data-table" id="dataTable">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Ism</th>
+            <th>Familiya</th>
+            <th>Telefon</th>
+            <th>Yashash joyi</th>
+            <th>Ishlash joyi</th>
+            <th>Sana</th>
+            <th>Amallar</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% data.forEach((item, index) => { %>
+            <tr>
+              <td><%= index + 1 %></td>
+              <td><%= item.ismi %></td>
+              <td><%= item.familiyasi %></td>
+              <td><%= item.telefon %></td>
+              <td><%= item.yashash_joyi || 'Kiritilmagan' %></td>
+              <td><%= item.ishlash_joyi || 'Kiritilmagan' %></td>
+              <td><%= new Date(item.timestamp).toLocaleString() %></td>
+              <td>
+                <div class="action-btns">
+                  <a href="/view/<%= index %>" class="btn btn-view">
+                    <i class="fas fa-eye"></i> Ko'rish
+                  </a>
+                  <a href="/edit/<%= index %>" class="btn btn-edit">
+                    <i class="fas fa-edit"></i> Tahrirlash
+                  </a>
+                  <a href="/delete/<%= index %>" onclick="return confirm('Rostdan ham bu ma\'lumotni o\'chirmoqchimisiz?')" class="btn btn-delete">
+                    <i class="fas fa-trash"></i> O'chirish
+                  </a>
+                  <a href="/download/<%= index %>" class="btn btn-download">
+                    <i class="fas fa-download"></i> Yuklab olish
+                  </a>
+                </div>
+              </td>
+            </tr>
+          <% }); %>
+        </tbody>
+      </table>
+    <% } else { %>
+      <div class="no-data">
+        <i class="fas fa-database"></i>
+        <h3>Ma'lumotlar mavjud emas</h3>
+        <p>Hozircha hech qanday ma'lumot kiritilmagan.</p>
+      </div>
+    <% } %>
+  </div>
+  
+  <script>
+    // Qidirish
+    function searchData() {
+      const searchText = document.getElementById('searchInput').value.toLowerCase();
+      const table = document.getElementById('dataTable');
+      if (!table) return;
+      
+      const rows = table.getElementsByTagName('tr');
+      
+      for (let i = 1; i < rows.length; i++) {
+        let found = false;
+        const cells = rows[i].getElementsByTagName('td');
+        
+        for (let j = 1; j < cells.length - 1; j++) {
+          const cellText = cells[j].textContent.toLowerCase();
+          
+          if (cellText.includes(searchText)) {
+            found = true;
+            break;
+          }
+        }
+        
+        rows[i].style.display = found ? '' : 'none';
+      }
+    }
+    
+    // Enter tugmasi bilan qidirish
+    const searchInput = document.getElementById('searchInput');
+    if (searchInput) {
+      searchInput.addEventListener('keyup', function(event) {
+        if (event.key === 'Enter') {
+          searchData();
+        }
+      });
+    }
+    
+    // URL parametrlarini tekshirish
+    const urlParams = new URLSearchParams(window.location.search);
+    const successMessage = urlParams.get('success');
+    
+    if (successMessage) {
+      // Muvaffaqiyatli xabar ko'rsatish
+      const container = document.querySelector('.container');
+      if (container) {
+        const successElement = document.createElement('div');
+        successElement.className = 'success-message';
+        successElement.innerHTML = `<i class="fas fa-check-circle"></i> ${successMessage}`;
+        
+        container.insertBefore(successElement, container.firstChild);
+        
+        // 5 soniyadan keyin xabarni yashirish
+        setTimeout(() => {
+          successElement.style.display = 'none';
+        }, 5000);
+      }
+    }
+  </script>
+</body>
+</html>

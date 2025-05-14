@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ma'lumot ko'rish</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+    }
+    
+    body {
+      background: #f5f7fa;
+      color: #333;
+      min-height: 100vh;
+    }
+    
+    .header {
+      background: linear-gradient(135deg, #667eea, #764ba2);
+      color: white;
+      padding: 20px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+    
+    .header-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    
+    .nav-links {
+      display: flex;
+      gap: 15px;
+    }
+    
+    .nav-links a {
+      color: white;
+      text-decoration: none;
+      padding: 8px 15px;
+      border-radius: 30px;
+      transition: all 0.3s;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+    
+    .nav-links a:hover {
+      background: rgba(255, 255, 255, 0.2);
+    }
+    
+    .container {
+      max-width: 800px;
+      margin: 30px auto;
+      padding: 0 20px;
+    }
+    
+    .card {
+      background: white;
+      border-radius: 15px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+      padding: 30px;
+    }
+    
+    .card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+      padding-bottom: 20px;
+      border-bottom: 1px solid #eee;
+    }
+    
+    .card-title {
+      font-size: 24px;
+      font-weight: 600;
+      color: #333;
+    }
+    
+    .back-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      padding: 8px 15px;
+      background: #f8f9fa;
+      color: #555;
+      border-radius: 8px;
+      text-decoration: none;
+      transition: all 0.3s;
+    }
+    
+    .back-btn:hover {
+      background: #e9ecef;
+    }
+    
+    .detail-row {
+      display: flex;
+      margin-bottom: 15px;
+      border-bottom: 1px solid #eee;
+      padding-bottom: 15px;
+    }
+    
+    .detail-row:last-child {
+      border-bottom: none;
+      margin-bottom: 0;
+      padding-bottom: 0;
+    }
+    
+    .detail-label {
+      width: 150px;
+      font-weight: 500;
+      color: #555;
+    }
+    
+    .detail-value {
+      flex: 1;
+      color: #666;
+    }
+    
+    .file-preview {
+      margin-top: 5px;
+    }
+    
+    .file-preview a {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      color: #3498db;
+      text-decoration: none;
+      transition: all 0.3s;
+    }
+    
+    .file-preview a:hover {
+      color: #2980b9;
+    }
+    
+    .file-preview img {
+      max-width: 100%;
+      max-height: 300px;
+      border-radius: 5px;
+      margin-top: 10px;
+    }
+    
+    .action-btns {
+      display: flex;
+      gap: 10px;
+      margin-top: 20px;
+      padding-top: 20px;
+      border-top: 1px solid #eee;
+    }
+    
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      padding: 10px 20px;
+      border-radius: 8px;
+      font-size: 14px;
+      cursor: pointer;
+      transition: all 0.3s;
+      border: none;
+      color: white;
+      text-decoration: none;
+    }
+    
+    .btn-edit {
+      background: #f39c12;
+    }
+    
+    .btn-edit:hover {
+      background: #d68910;
+    }
+    
+    .btn-delete {
+      background: #e74c3c;
+    }
+    
+    .btn-delete:hover {
+      background: #c0392b;
+    }
+    
+    .btn-download {
+      background: #27ae60;
+    }
+    
+    .btn-download:hover {
+      background: #219653;
+    }
+    
+    /* Responsive */
+    @media (max-width: 768px) {
+      .header-content {
+        flex-direction: column;
+        gap: 15px;
+      }
+      
+      .nav-links {
+        width: 100%;
+        justify-content: center;
+      }
+      
+      .detail-row {
+        flex-direction: column;
+      }
+      
+      .detail-label {
+        width: 100%;
+        margin-bottom: 5px;
+      }
+      
+      .action-btns {
+        flex-direction: column;
+      }
+      
+      .btn {
+        width: 100%;
+        justify-content: center;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="header">
+    <div class="header-content">
+      <h2>Ma'lumot ko'rish</h2>
+      <div class="nav-links">
+        <a href="/data"><i class="fas fa-list"></i> Ro'yxat</a>
+        <a href="/"><i class="fas fa-home"></i> Bosh sahifa</a>
+        <a href="/logout"><i class="fas fa-sign-out-alt"></i> Chiqish</a>
+      </div>
+    </div>
+  </header>
+  
+  <div class="container">
+    <div class="card">
+      <div class="card-header">
+        <h3 class="card-title"><%= item.ismi %> <%= item.familiyasi %></h3>
+        <a href="/data" class="back-btn"><i class="fas fa-arrow-left"></i> Orqaga</a>
+      </div>
+      
+      <div class="detail-row">
+        <div class="detail-label">Ism:</div>
+        <div class="detail-value"><%= item.ismi %></div>
+      </div>
+      
+      <div class="detail-row">
+        <div class="detail-label">Familiya:</div>
+        <div class="detail-value"><%= item.familiyasi %></div>
+      </div>
+      
+      <div class="detail-row">
+        <div class="detail-label">Telefon:</div>
+        <div class="detail-value"><%= item.telefon %></div>
+      </div>
+      
+      <div class="detail-row">
+        <div class="detail-label">Yashash joyi:</div>
+        <div class="detail-value"><%= item.yashash_joyi || 'Kiritilmagan' %></div>
+      </div>
+      
+      <div class="detail-row">
+        <div class="detail-label">Ishlash joyi:</div>
+        <div class="detail-value"><%= item.ishlash_joyi || 'Kiritilmagan' %></div>
+      </div>
+      
+      <div class="detail-row">
+        <div class="detail-label">Sana:</div>
+        <div class="detail-value"><%= new Date(item.timestamp).toLocaleString() %></div>
+      </div>
+      
+      <% if (item.pasport_file) { %>
+        <div class="detail-row">
+          <div class="detail-label">Pasport nusxasi:</div>
+          <div class="detail-value">
+            <div class="file-preview">
+              <a href="/uploads/<%= item.pasport_file %>" target="_blank">
+                <i class="fas fa-file-pdf"></i> Pasport nusxasini ko'rish
+              </a>
+            </div>
+          </div>
+        </div>
+      <% } %>
+      
+      <% if (item.foto) { %>
+        <div class="detail-row">
+          <div class="detail-label">Rasm:</div>
+          <div class="detail-value">
+            <div class="file-preview">
+              <img src="/uploads/<%= item.foto %>" alt="Rasm">
+            </div>
+          </div>
+        </div>
+      <% } %>
+    </div>
+  </div>
+</body>
+</html>
